@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shree Nayra Group</title>
+
+<style>
+body{margin:0;font-family:Poppins;background:#0A1F44;color:white}
+header{text-align:center;padding:20px;background:black}
+h1{color:#D4AF37}
+.section{padding:50px 20px;text-align:center}
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.card{background:#132a5e;padding:20px;border-radius:12px;width:250px;cursor:pointer}
+input,select{padding:10px;margin:10px;border-radius:8px;border:none;width:220px}
+.btn{background:#D4AF37;color:black;padding:10px 20px;border:none;border-radius:20px;cursor:pointer}
+.hidden{display:none}
+</style>
+
+<script>
+function openSection(id){
+document.querySelectorAll(".dept").forEach(e=>e.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+window.scrollTo(0,document.getElementById(id).offsetTop);
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Shree Nayra Group</h1>
+<p>Hair | Investment | Insurance | Digital</p>
+</header>
+
+<section class="section">
+<h2>Select Service</h2>
+
+<div class="cards">
+<div class="card" onclick="openSection('hair')">Hair Transplant</div>
+<div class="card" onclick="openSection('investment')">Investment</div>
+<div class="card" onclick="openSection('insurance')">Insurance</div>
+<div class="card" onclick="openSection('digital')">Digital Marketing</div>
+</div>
+
+</section>
+
+<!-- HAIR -->
+<section id="hair" class="section dept hidden">
+<h2>Hair Transplant</h2>
+
+<select id="grade">
+<option>Stage 1</option>
+<option>Stage 2</option>
+<option>Stage 3</option>
+<option>Stage 4</option>
+<option>Stage 5</option>
+<option>Stage 6</option>
+<option>Stage 7</option>
+</select>
+
+<br>
+<input type="date" id="date">
+<input type="time" id="time">
+
+<br>
+<button class="btn" onclick="bookHair()">Book ₹199</button>
+</section>
+
+<!-- INVESTMENT -->
+<section id="investment" class="section dept hidden">
+<h2>SIP Calculator</h2>
+
+<input type="number" id="sip" placeholder="Monthly Amount">
+<input type="number" id="rate" placeholder="Interest %">
+<input type="number" id="years" placeholder="Years">
+
+<br>
+<button class="btn" onclick="sipCalc()">Calculate</button>
+<h3 id="sipResult"></h3>
+
+<h2>Inflation Calculator</h2>
+
+<input type="number" id="amt" placeholder="Current Amount">
+<input type="number" id="inf" placeholder="Inflation %">
+<input type="number" id="yrs" placeholder="Years">
+
+<br>
+<button class="btn" onclick="infCalc()">Calculate</button>
+<h3 id="infResult"></h3>
+
+</section>
+
+<!-- INSURANCE -->
+<section id="insurance" class="section dept hidden">
+<h2>Insurance</h2>
+
+<input type="text" id="iname" placeholder="Name"><br>
+<input type="number" id="iphone" placeholder="Phone"><br>
+
+<button class="btn" onclick="insuranceLead()">Get Plan</button>
+</section>
+
+<!-- DIGITAL -->
+<section id="digital" class="section dept hidden">
+<h2>Digital Marketing</h2>
+<p>Website: ₹9999+</p>
+<p>Ads: ₹20k+</p>
+<p>SEO: ₹15k+</p>
+</section>
+
+<script>
+
+function bookHair(){
+let g=document.getElementById('grade').value;
+let d=document.getElementById('date').value;
+let t=document.getElementById('time').value;
+
+let msg=`Hair Booking%0AGrade:${g}%0ADate:${d}%0ATime:${t}`;
+window.open(`https://wa.me/918826980675?text=${msg}`);
+}
+
+function insuranceLead(){
+let n=document.getElementById('iname').value;
+let p=document.getElementById('iphone').value;
+
+let msg=`Insurance Lead%0AName:${n}%0APhone:${p}`;
+window.open(`https://wa.me/918826980675?text=${msg}`);
+}
+
+function sipCalc(){
+let sip=document.getElementById('sip').value;
+let rate=document.getElementById('rate').value/100/12;
+let n=document.getElementById('years').value*12;
+
+let fv=sip*((Math.pow(1+rate,n)-1)/rate);
+document.getElementById('sipResult').innerText="₹"+Math.round(fv);
+}
+
+function infCalc(){
+let amt=document.getElementById('amt').value;
+let inf=document.getElementById('inf').value/100;
+let yrs=document.getElementById('yrs').value;
+
+let future=amt*Math.pow(1+inf,yrs);
+document.getElementById('infResult').innerText="₹"+Math.round(future);
+}
+
+</script>
+
+</body>
+</html>
